@@ -1,0 +1,192 @@
+{
+  "$schema": "https://firebase.google.com/schemas/firestore/blueprint.json",
+  "entities": {
+    "teachers": {
+      "title": "Teachers",
+      "description": "Registered teachers and administrators for the institution",
+      "type": "object",
+      "properties": {
+        "Username": { "type": "string", "description": "Teacher login username" },
+        "Password": { "type": "string", "description": "Teacher login password" },
+        "ClassAssigned": { "type": "string", "description": "Class assigned to teacher e.g. Primary 4" },
+        "FullName": { "type": "string", "description": "Full name of the teacher" },
+        "Role": { "type": "string", "description": "teacher or admin" }
+      }
+    },
+    "students": {
+      "title": "Students",
+      "description": "Enrolled pupils across Nursery, Primary, and Secondary sections",
+      "type": "object",
+      "properties": {
+        "StudentID": { "type": "string", "description": "Unique student admission number e.g. SCH/PRI/001" },
+        "FullName": { "type": "string", "description": "Full name of the pupil" },
+        "Class": { "type": "string", "description": "Current class of the pupil" },
+        "Gender": { "type": "string", "description": "Pupil gender (Male or Female)" },
+        "DOB": { "type": "string", "description": "Date of birth" },
+        "ParentName": { "type": "string", "description": "Parent or guardian name" },
+        "ParentPhone": { "type": "string", "description": "Parent phone number" },
+        "Address": { "type": "string", "description": "Residential address" },
+        "GuardianEmail": { "type": "string", "description": "Parent email" },
+        "Password": { "type": "string", "description": "Student portal password" }
+      }
+    },
+    "classes": {
+      "title": "Classes",
+      "description": "Academic classes in the school directory",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique class identifier" },
+        "name": { "type": "string", "description": "Class display name e.g. Primary 4" },
+        "category": { "type": "string", "description": "KG, Nursery, Primary, Junior Secondary, Senior Secondary" },
+        "order": { "type": "number", "description": "Ordering priority" }
+      }
+    },
+    "subjects": {
+      "title": "Subjects",
+      "description": "Curriculum subjects by academic tier and level",
+      "type": "object",
+      "properties": {
+        "Level": { "type": "string", "description": "Education level e.g. Kindergarten, Nursery, LowerPrimary, UpperPrimary, JuniorSecondary, SeniorSecondary" },
+        "SubjectName": { "type": "string", "description": "Name of the subject" },
+        "Class": { "type": "string", "description": "Optional specific class" }
+      }
+    },
+    "scores": {
+      "title": "SubjectScores",
+      "description": "Continuous Assessment (CA1, CA2) and Exam scores for students per subject and term",
+      "type": "object",
+      "properties": {
+        "StudentID": { "type": "string", "description": "Student ID" },
+        "Term": { "type": "string", "description": "First Term, Second Term, or Third Term" },
+        "Session": { "type": "string", "description": "Academic Session e.g. 2025/2026" },
+        "Subject": { "type": "string", "description": "Subject name" },
+        "CA1": { "type": "number", "description": "First continuous assessment score (max 20)" },
+        "CA2": { "type": "number", "description": "Second continuous assessment score (max 20)" },
+        "Exam": { "type": "number", "description": "Examination score (max 60)" },
+        "Total": { "type": "number", "description": "Total combined score (max 100)" }
+      }
+    },
+    "summaries": {
+      "title": "StudentSummaries",
+      "description": "Termly attendance, affective/psychomotor ratings, and teacher/principal remarks",
+      "type": "object",
+      "properties": {
+        "StudentID": { "type": "string", "description": "Student ID" },
+        "Term": { "type": "string", "description": "Term name" },
+        "Session": { "type": "string", "description": "Session year" },
+        "DaysPresent": { "type": "number", "description": "Number of days student was present" },
+        "DaysOpened": { "type": "number", "description": "Total days school opened" },
+        "TeacherComment": { "type": "string", "description": "Class teacher remark" },
+        "PrincipalComment": { "type": "string", "description": "Head teacher/principal remark" },
+        "PromotionDecision": { "type": "string", "description": "Promoted, Promoted on Trial, Repeat" },
+        "UpdatedAt": { "type": "string", "description": "ISO timestamp of last update" }
+      }
+    },
+    "published": {
+      "title": "PublishedRecords",
+      "description": "Termly publication status of class results for student portal access",
+      "type": "object",
+      "properties": {
+        "classKey": { "type": "string", "description": "Composite key e.g. Primary 4_First Term_2025/2026" },
+        "className": { "type": "string", "description": "Class name" },
+        "term": { "type": "string", "description": "Term name" },
+        "session": { "type": "string", "description": "Academic session" },
+        "isPublished": { "type": "boolean", "description": "Whether results are published for parents/pupils" },
+        "publishedAt": { "type": "string", "description": "Timestamp of publication" },
+        "publishedBy": { "type": "string", "description": "User who published results" }
+      }
+    },
+    "daily_attendance": {
+      "title": "DailyAttendance",
+      "description": "Daily student roll-call attendance registers",
+      "type": "object",
+      "properties": {
+        "className": { "type": "string", "description": "Class name" },
+        "date": { "type": "string", "description": "Date of attendance" },
+        "session": { "type": "string", "description": "Academic session" },
+        "term": { "type": "string", "description": "Academic term" },
+        "presentCount": { "type": "number", "description": "Count of present pupils" },
+        "absentCount": { "type": "number", "description": "Count of absent pupils" }
+      }
+    },
+    "rollover_history": {
+      "title": "RolloverHistory",
+      "description": "Audit log of academic session promotions and rollovers",
+      "type": "object",
+      "properties": {
+        "timestamp": { "type": "string", "description": "ISO timestamp of rollover" },
+        "sourceSession": { "type": "string", "description": "Source session" },
+        "targetSession": { "type": "string", "description": "Target session" },
+        "executedBy": { "type": "string", "description": "Admin username who ran rollover" }
+      }
+    },
+    "website_config": {
+      "title": "WebsiteConfig",
+      "description": "Dynamic CMS content configuration for the public school homepage and portal",
+      "type": "object",
+      "properties": {
+        "schoolName": { "type": "string", "description": "Official school name" },
+        "motto": { "type": "string", "description": "School motto" },
+        "phonePrimary": { "type": "string", "description": "Primary contact phone" },
+        "email": { "type": "string", "description": "Official school email" },
+        "address": { "type": "string", "description": "Physical campus address" }
+      }
+    },
+    "settings": {
+      "title": "SchoolSettings",
+      "description": "Global school configuration and grading scales",
+      "type": "object",
+      "properties": {
+        "currentSession": { "type": "string", "description": "Default active session" },
+        "currentTerm": { "type": "string", "description": "Default active term" },
+        "schoolName": { "type": "string", "description": "Configured institution / school name" }
+      }
+    }
+  },
+  "firestore": {
+    "/teachers/{teacherId}": {
+      "schema": { "$ref": "#/entities/teachers" },
+      "description": "Teacher and administrator accounts"
+    },
+    "/students/{studentId}": {
+      "schema": { "$ref": "#/entities/students" },
+      "description": "Student profiles and credentials"
+    },
+    "/classes/{classId}": {
+      "schema": { "$ref": "#/entities/classes" },
+      "description": "School classes"
+    },
+    "/subjects/{subjectId}": {
+      "schema": { "$ref": "#/entities/subjects" },
+      "description": "Curriculum subjects"
+    },
+    "/scores/{scoreId}": {
+      "schema": { "$ref": "#/entities/scores" },
+      "description": "Student assessment scores"
+    },
+    "/summaries/{summaryId}": {
+      "schema": { "$ref": "#/entities/summaries" },
+      "description": "Student term summaries and remarks"
+    },
+    "/published/{publishId}": {
+      "schema": { "$ref": "#/entities/published" },
+      "description": "Class result publication records"
+    },
+    "/daily_attendance/{attendanceId}": {
+      "schema": { "$ref": "#/entities/daily_attendance" },
+      "description": "Daily attendance registers"
+    },
+    "/rollover_history/{rolloverId}": {
+      "schema": { "$ref": "#/entities/rollover_history" },
+      "description": "Session rollover audit records"
+    },
+    "/website_config/{configId}": {
+      "schema": { "$ref": "#/entities/website_config" },
+      "description": "School homepage CMS configuration"
+    },
+    "/settings/{settingId}": {
+      "schema": { "$ref": "#/entities/settings" },
+      "description": "Global school settings and grading scales"
+    }
+  }
+}

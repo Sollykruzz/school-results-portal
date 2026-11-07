@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="er-blue-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a8a" />
+      <stop offset="50%" stop-color="#1e40af" />
+      <stop offset="100%" stop-color="#2563eb" />
+    </linearGradient>
+    <linearGradient id="er-red-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#dc2626" />
+      <stop offset="50%" stop-color="#991b1b" />
+    </linearGradient>
+  </defs>
+
+  <!-- Circular Outer Background -->
+  <circle cx="256" cy="235" r="212" fill="#ffffff" stroke="#0a1e3f" stroke-width="11" />
+  <circle cx="256" cy="235" r="195" fill="none" stroke="#1d4ed8" stroke-width="3.5" />
+  <circle cx="256" cy="235" r="132" fill="#f8fafc" stroke="#0a1e3f" stroke-width="5" />
+
+  <!-- TOP TEXT: EMINENT ROYAL CROWN ACADEMY -->
+  <text x="104.35" y="167.48" font-size="21.5" font-family="DejaVu Sans, Arial Black, Arial, sans-serif" font-weight="900" fill="#0a1e3f" text-anchor="middle" dominant-baseline="central" transform="rotate(-66.00, 104.35, 167.48)">E</text>
+<text x="110.92" y="154.33" font-size="21.5" font-family="DejaVu Sans, Arial Black, Arial, sans-serif" font-weight="900" fill="#0a1e3f" text-anchor="middle" dominant-baseline="central" transform="rotate(-60.92, 110.92, 154.33)">M</text>
+<text x="118.63" y="141.80" font-size="21.5" font-family="DejaVu Sans, Arial Black, Arial, sans-serif" font-weight="900" fill="#0a1e3f" text-anchor="middle" dominant-baseline="central" transform="rotate(-55.85, 118.63, 141.80)">I</text>
+<text x="127.42" y="130.01" font-size="21.5" font-family="DejaVu Sans, Arial Black, Arial, sans-serif" font-weight="900" fill="#0a1e3f" text-anchor="middle" dominant-baseline="central" transform="rotate(-50.77, 127.42, 130.01)">N</text>
+<text x="137.21" y="119.05" font-size="21.5" font-family="DejaVu Sans, Arial Black, Arial, sans-serif" font-weight="900" fill="#0a1e3f" text-anchor="middle" dominant-baseline="central" transform="rotate(-45.69, 137.21, 119.05)">E</text>
+<text x="147.94" y="108.99" font-size="21.5" font-family="DejaVu Sans, Arial Black, Arial, sans-serif" font-weight="900" fill="#0a1e3f" text-anchor="middle" dominant-baseline="central" transform="rotate(-40.62, 147.94, 108.99)">N</text>
+<text x="159.51" y="99.92" font-size="21.5" font-family="DejaVu Sans, Arial Black, Arial, sans-serif" font-weight="900" fill="#0a1e3f" text-anchor="middle" dominant-baseline="central" transform="rotate(-35.54, 159.51, 99.92)">T</text>
+<text x="184.84" y="85.03" font-size="21.5" font-family="DejaVu Sans, Arial Black, Arial, sans-serif" font-weight="900" fill="#0a1e3f" text-anchor="middle" dominant-baseline="central" transform="rotate(-25.38, 184.84, 85.03)">R</text>
+<text x="198.39" y="79.32" font-size="21.5" font-family="DejaVu Sans, Arial Black, Arial, sans-serif" font-weight="900" fill="#0a1e3f" text-anchor="middle" dominant-baseline="central" transform="rotate(-20.31, 198.39, 79.32)">O</text>
+<text x="212.39" y="74.83" font-size="21.5" font-family="DejaVu Sans, Arial Black, Arial, sans-serif" font-weight="900" fill="#0a1e3f" text-anchor="middle" dominant-baseline="central" transform="rotate(-15.23, 212.39, 74.83)">Y</text>
+<text x="226.74" y="71.60" font-size="21.5" font-family="DejaVu Sans, Arial Black, Arial, sans-serif" font-weight="900" fill="#0a1e3f" text-anchor="middle" dominant-baseline="central" transform="rotate(-10.15, 226.74, 71.60)">A</text>
+<text x="241.31" y="69.65" font-size="21.5" font-family="DejaVu Sans, Arial Black, Arial, sans-serif" font-weight="900" fill="#0a1e3f" text-anchor="middle" dominant-baseline="central" transform="rotate(-5.08, 241.31, 69.65)">L</text>
+<text x="270.69" y="69.65" font-size="21.5" font-family="DejaVu Sans, Arial Black, Arial, sans-serif" font-weight="900" fill="#0a1e3f" text-anchor="middle" dominant-baseline="central" transform="rotate(5.08, 270.69, 69.65)">C</text>
+<text x="285.26" y="71.60" font-size="21.5" font-family="DejaVu Sans, Arial Black, Arial, sans-serif" font-weight="900" fill="#0a1e3f" text-anchor="middle" dominant-baseline="central" transform="rotate(10.15, 285.26, 71.60)">R</text>
+<text x="299.61" y="74.83" font-size="21.5" font-family="DejaVu Sans, Arial Black, Arial, sans-serif" font-weight="900" fill="#0a1e3f" text-anchor="middle" dominant-baseline="central" transform="rotate(15.23, 299.61, 74.83)">O</text>
+<text x="313.61" y="79.32" font-size="21.5" font-family="DejaVu Sans, Arial Black, Arial, sans-serif" font-weight="900" fill="#0a1e3f" text-anchor="middle" dominant-baseline="central" transform="rotate(20.31, 313.61, 79.32)">W</text>
+<text x="327.16" y="85.03" font-size="21.5" font-family="DejaVu Sans, Arial Black, Arial, sans-serif" font-weight="900" fill="#0a1e3f" text-anchor="middle" dominant-baseline="central" transform="rotate(25.38, 327.16, 85.03)">N</text>
+<text x="352.49" y="99.92" font-size="21.5" font-family="DejaVu Sans, Arial Black, Arial, sans-serif" font-weight="900" fill="#0a1e3f" text-anchor="middle" dominant-baseline="central" transform="rotate(35.54, 352.49, 99.92)">A</text>
+<text x="364.06" y="108.99" font-size="21.5" font-family="DejaVu Sans, Arial Black, Arial, sans-serif" font-weight="900" fill="#0a1e3f" text-anchor="middle" dominant-baseline="central" transform="rotate(40.62, 364.06, 108.99)">C</text>
+<text x="374.79" y="119.05" font-size="21.5" font-family="DejaVu Sans, Arial Black, Arial, sans-serif" font-weight="900" fill="#0a1e3f" text-anchor="middle" dominant-baseline="central" transform="rotate(45.69, 374.79, 119.05)">A</text>
+<text x="384.58" y="130.01" font-size="21.5" font-family="DejaVu Sans, Arial Black, Arial, sans-serif" font-weight="900" fill="#0a1e3f" text-anchor="middle" dominant-baseline="central" transform="rotate(50.77, 384.58, 130.01)">D</text>
+<text x="393.37" y="141.80" font-size="21.5" font-family="DejaVu Sans, Arial Black, Arial, sans-serif" font-weight="900" fill="#0a1e3f" text-anchor="middle" dominant-baseline="central" transform="rotate(55.85, 393.37, 141.80)">E</text>
+<text x="401.08" y="154.33" font-size="21.5" font-family="DejaVu Sans, Arial Black, Arial, sans-serif" font-weight="900" fill="#0a1e3f" text-anchor="middle" dominant-baseline="central" transform="rotate(60.92, 401.08, 154.33)">M</text>
+<text x="407.65" y="167.48" font-size="21.5" font-family="DejaVu Sans, Arial Black, Arial, sans-serif" font-weight="900" fill="#0a1e3f" text-anchor="middle" dominant-baseline="central" transform="rotate(66.00, 407.65, 167.48)">Y</text>
+
+
+  <!-- Left Flanking Star -->
+  <g transform="translate(124, 340) scale(1.2)">
+    <polygon points="0,-12 3.5,-3.5 11.4,-3.5 5,1.2 7.4,8.8 0,4.2 -7.4,8.8 -5,1.2 -11.4,-3.5 -3.5,-3.5" fill="#1d4ed8" />
+  </g>
+
+  <!-- BOTTOM TEXT: KEFFI -->
+  <text x="318.18" y="388.91" font-size="34" font-family="DejaVu Sans, Arial Black, Arial, sans-serif" font-weight="900" fill="#0a1e3f" text-anchor="middle" dominant-baseline="central" transform="rotate(-22.00, 318.18, 388.91)">K</text>
+<text x="287.67" y="397.95" font-size="34" font-family="DejaVu Sans, Arial Black, Arial, sans-serif" font-weight="900" fill="#0a1e3f" text-anchor="middle" dominant-baseline="central" transform="rotate(-11.00, 287.67, 397.95)">E</text>
+<text x="256.00" y="401.00" font-size="34" font-family="DejaVu Sans, Arial Black, Arial, sans-serif" font-weight="900" fill="#0a1e3f" text-anchor="middle" dominant-baseline="central" transform="rotate(0.00, 256.00, 401.00)">F</text>
+<text x="224.33" y="397.95" font-size="34" font-family="DejaVu Sans, Arial Black, Arial, sans-serif" font-weight="900" fill="#0a1e3f" text-anchor="middle" dominant-baseline="central" transform="rotate(11.00, 224.33, 397.95)">F</text>
+<text x="193.82" y="388.91" font-size="34" font-family="DejaVu Sans, Arial Black, Arial, sans-serif" font-weight="900" fill="#0a1e3f" text-anchor="middle" dominant-baseline="central" transform="rotate(22.00, 193.82, 388.91)">I</text>
+
+
+  <!-- Right Flanking Star -->
+  <g transform="translate(388, 340) scale(1.2)">
+    <polygon points="0,-12 3.5,-3.5 11.4,-3.5 5,1.2 7.4,8.8 0,4.2 -7.4,8.8 -5,1.2 -11.4,-3.5 -3.5,-3.5" fill="#1d4ed8" />
+  </g>
+
+  <!-- ================= INNER EMBLEM ================= -->
+  <!-- 1. Star at top of core -->
+  <g transform="translate(256, 162) scale(1.75)">
+    <polygon points="0,-22 6.5,-6.8 22,-6.8 9.5,2.4 14.3,17.4 0,8.2 -14.3,17.4 -9.5,2.4 -22,-6.8 -6.5,-6.8" fill="url(#er-blue-grad)" stroke="#0a1e3f" stroke-width="1.4" />
+  </g>
+
+  <!-- 2. Crimson Heart in center -->
+  <g transform="translate(256, 250) scale(1.22)">
+    <path d="M 0,22 C -6,14 -28,2 -28,-14 C -28,-26 -16,-34 0,-20 C 16,-34 28,-26 28,-14 C 28,2 6,14 0,22 Z" fill="url(#er-red-grad)" stroke="#7f1d1d" stroke-width="1.5" />
+  </g>
+
+  <!-- 3. Supporting Hands cupping from beneath -->
+  <g transform="translate(256, 288) scale(1.12)">
+    <!-- Left Hand -->
+    <path d="M -82,-35 C -66,-35 -40,-12 -12,6 C -5,10 0,15 0,22 C -6,22 -18,15 -34,8 C -54,0 -72,-12 -82,-22 C -88,-28 -88,-35 -82,-35 Z" fill="#1d4ed8" />
+    <!-- Right Hand -->
+    <path d="M 82,-35 C 66,-35 40,-12 12,6 C 5,10 0,15 0,22 C 6,22 18,15 34,8 C 54,0 72,-12 82,-22 C 88,-28 88,-35 82,-35 Z" fill="#1d4ed8" />
+    <!-- Base Wrist / Palms Union -->
+    <path d="M -45,10 C -30,18 -15,34 0,40 C 15,34 30,18 45,10 C 28,32 15,40 0,42 C -15,40 -28,32 -45,10 Z" fill="#0a1e3f" />
+  </g>
+
+  <!-- ================= BOTTOM MOTTO BANNER ================= -->
+  <!-- Left Ribbon Tail -->
+  <path d="M 26,432 L 72,410 L 72,462 L 26,484 L 46,448 Z" fill="#0a1e3f" stroke="#061329" stroke-width="2" />
+  <!-- Right Ribbon Tail -->
+  <path d="M 486,432 L 440,410 L 440,462 L 486,484 L 466,448 Z" fill="#0a1e3f" stroke="#061329" stroke-width="2" />
+
+  <!-- Center Banner Box -->
+  <rect x="64" y="415" width="384" height="52" rx="7" fill="#1d4ed8" stroke="#0a1e3f" stroke-width="3" />
+
+  <!-- Motto Text -->
+  <text x="256" y="448" text-anchor="middle" fill="#ffffff" font-size="16.5" font-family="DejaVu Sans, Arial Black, Arial, sans-serif" font-weight="900" letter-spacing="1.2">
+    KNOWLEDGE • DISCIPLINE • SUCCESS
+  </text>
+</svg>

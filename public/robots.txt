@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dgos.com.ng/sitemap.xml

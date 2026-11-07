@@ -1,0 +1,142 @@
+@import "tailwindcss";
+
+@layer base {
+  html, body {
+    font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    touch-action: manipulation;
+    overscroll-behavior-y: none;
+  }
+
+  .pb-safe { padding-bottom: max(env(safe-area-inset-bottom, 0px), 16px); }
+  .pb-safe-nav { padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 72px); }
+  .pt-safe { padding-top: max(env(safe-area-inset-top, 0px), 0px); }
+  .mb-safe { margin-bottom: env(safe-area-inset-bottom, 16px); }
+}
+
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.35); border-radius: 9999px; }
+
+.touch-active { transition: transform 0.1s ease, opacity 0.1s ease; }
+.touch-active:active { transform: scale(0.97); opacity: 0.9; }
+
+@media print {
+  @page { size: A4 portrait; margin: 4mm 5mm; }
+
+  html, body {
+    background: #fff !important;
+    color: #000 !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  body:has(#report-card-modal-backdrop) > #root,
+  body.report-card-modal-open > #root,
+  body.printing-report-card > #root { display: none !important; }
+
+  nav, header, footer, aside, .no-print, .no-print *, button,
+  [role="button"] { display: none !important; }
+
+  #root, main {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    position: static !important;
+  }
+
+  #report-card-modal-backdrop,
+  #report-card-modal-container {
+    position: static !important;
+    inset: auto !important;
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    background: #fff !important;
+    box-shadow: none !important;
+    border: 0 !important;
+  }
+
+  /* The report is exactly the printable A4 content width. It flows naturally
+     top-to-bottom at actual print-sized text instead of being stretched with
+     justify-content: space-between across a forced full-page height, which is
+     what was producing the large gaps between sections. */
+  #printable-report-sheet {
+    display: block !important;
+    width: 200mm !important;
+    max-width: 200mm !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: 289mm !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    background: #fff !important;
+    page-break-before: avoid !important;
+    page-break-after: avoid !important;
+    break-before: avoid !important;
+    break-after: avoid !important;
+    font-size: 11px !important;
+    line-height: 1.3 !important;
+  }
+
+  #printable-report-sheet table {
+    width: 100% !important;
+    table-layout: fixed !important;
+    border-collapse: collapse !important;
+    font-size: 10.5px !important;
+  }
+  #printable-report-sheet th,
+  #printable-report-sheet td {
+    padding: 2.5px 3px !important;
+    line-height: 1.25 !important;
+    font-size: inherit !important;
+  }
+  #printable-report-sheet img {
+    max-height: 22mm !important;
+    width: auto !important;
+    object-fit: contain !important;
+  }
+
+  #printable-class-summary,
+  #printable-master-broadsheet,
+  #printable-teacher-broadsheet {
+    width: 200mm !important;
+    max-width: 200mm !important;
+    margin: 0 auto !important;
+    min-height: 0 !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    page-break-before: avoid !important;
+    break-before: avoid !important;
+  }
+
+  img:not(#printable-report-sheet img):not(#printable-teacher-broadsheet img):not(#printable-class-summary img):not(#printable-master-broadsheet img) {
+    display: none !important;
+  }
+
+  table { page-break-inside: auto; }
+  tr { page-break-inside: avoid; break-inside: avoid; }
+  thead { display: table-header-group; }
+  tfoot { display: table-footer-group; }
+}
