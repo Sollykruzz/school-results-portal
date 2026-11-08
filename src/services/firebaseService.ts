@@ -2530,6 +2530,44 @@ export async function bulkUploadStudents(
 }
 
 /**
+ * Build a complete backup from every portal collection and settings document.
+ * This keeps credentials, classes, attendance, website configuration, grading rules,
+ * scoring configurations, and future settings additions in the backup.
+ */
+export async function exportSchoolBackup(): Promise<Record<string, any>> {
+  const [classesSnap, teachersSnap, studentsSnap, subjectsSnap, scoresSnap, summariesSnap, publishedSnap, attendanceSnap, settingsSnap] = await Promise.all([
+    getDocs(collection(db, 'classes')),
+    getDocs(collection(db, 'teachers')),
+    getDocs(collection(db, 'students')),
+    getDocs(collection(db, 'subjects')),
+    getDocs(collection(db, 'scores')),
+    getDocs(collection(db, 'summaries')),
+    getDocs(collection(db, 'published')),
+    getDocs(collection(db, 'attendance')),
+    getDocs(collection(db, 'settings'))
+  ]);
+
+  const readCollection = (snapshot: any) => snapshot.docs.map((item: any) => ({
+    id: item.id,
+    ...item.data()
+  }));
+
+  return {
+    version: '3.0',
+    exportedAt: new Date().toISOString(),
+    teachers: readCollection(teachersSnap),
+    students: readCollection(studentsSnap),
+    subjects: readCollection(subjectsSnap),
+    scores: readCollection(scoresSnap),
+    summaries: readCollection(summariesSnap),
+    published: readCollection(publishedSnap),
+    classes: readCollection(classesSnap),
+    attendance: readCollection(attendanceSnap),
+    settings: settingsSnap.docs.map((item: any) => ({ id: item.id, data: item.data() }))
+  };
+}
+
+/**
  * Restore complete school database from a JSON backup file
  */
 export async function restoreSchoolBackup(backupData: {
@@ -2548,7 +2586,10 @@ export async function restoreSchoolBackup(backupData: {
       subjects: 0,
       scores: 0,
       summaries: 0,
-      published: 0
+      published: 0,
+      classes: 0,
+      attendance: 0,
+      settings: 0
     };
 
     // Normalize keys in case of variant exports
@@ -2564,6 +2605,33 @@ export async function restoreSchoolBackup(backupData: {
       backupData.summaries || (backupData as any).allSummaries || (backupData as any).summariesList || [];
     const rawPublished: PublishedRecord[] =
       backupData.published || (backupData as any).publishedRecords || [];
+    const rawClasses = Array.isArray((backupData as any).classes) ? (backupData as any).classes : [];
+    const rawAttendance = Array.isArray((backupData as any).attendance) ? (backupData as any).attendance : [];
+    const rawSettings = Array.isArray((backupData as any).settings) ? [...(backupData as any).settings] : [];
+    if ((backupData as any).websiteConfig && typeof (backupData as any).websiteConfig === 'object') {
+      rawSettings.push({ id: 'website_config', data: (backupData as any).websiteConfig });
+    }
+
+    // Restore classes, attendance, and every settings document before primary records.
+    for (const item of rawClasses) {
+      const id = String(item.id || item.name || '').trim();
+      if (!id) continue;
+      await setDoc(doc(db, 'classes', id), cleanFirestorePayload({ ...item, id }), { merge: true });
+      stats.classes++;
+    }
+    for (const item of rawAttendance) {
+      const id = String(item.id || `${item.className || 'class'}_${item.date || Date.now()}`).trim();
+      if (!id) continue;
+      await setDoc(doc(db, 'attendance', id), cleanFirestorePayload({ ...item, id }), { merge: true });
+      stats.attendance++;
+    }
+    for (const item of rawSettings) {
+      const id = String(item.id || '').trim();
+      if (!id) continue;
+      const data = item.data && typeof item.data === 'object' ? item.data : item;
+      await setDoc(doc(db, 'settings', id), cleanFirestorePayload(data), { merge: true });
+      stats.settings++;
+    }
 
     // Restore Teachers
     if (rawTeachers && rawTeachers.length > 0) {
@@ -5252,6 +5320,8 @@ export async function resetWebsiteConfig(): Promise<{ success: boolean; message:
  */
 export const SupabaseService = {
   isConfigured: () => true,
+  exportSchoolBackup,
+  restoreSchoolBackup,
   loadAllData,
   fetchClasses,
   saveClass,
@@ -5273,7 +5343,6 @@ export const SupabaseService = {
   SECONDARY_STUDENT_ID_PREFIX,
   deleteStudent,
   bulkUploadStudents,
-  restoreSchoolBackup,
   addSubject,
   deleteSubject,
   updateTeacherCredentials,
