@@ -4,4 +4,4 @@
  */
 
 export * from './firebaseService';
-export { FirebaseService as default } from './firebaseService';
+export { SupabaseService as default } from './firebaseService';

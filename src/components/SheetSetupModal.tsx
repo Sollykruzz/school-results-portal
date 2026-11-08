@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  FirebaseService,
+  SupabaseService,
   INITIAL_DEFAULT_TEACHERS,
   INITIAL_DEFAULT_SUBJECTS,
   INITIAL_DEFAULT_STUDENTS,
@@ -8,7 +8,7 @@ import {
 } from '../services/firebaseService';
 import { getActiveSchoolConfig } from '../config/schoolConfig';
 import { getScoringConfig } from '../utils/grading';
-import { firebaseConfig, HARDCODED_DATABASE_ID } from '../services/firebase';
+import { HARDCODED_DATABASE_ID } from '../services/supabaseFirestore';
 import {
   X,
   Database,
@@ -89,12 +89,12 @@ export const SheetSetupModal: React.FC<SheetSetupModalProps> = ({
   const handleSeedDatabase = async (force: boolean = false) => {
     setSeedingStatus({ running: true });
     try {
-      const res = await FirebaseService.seedInitialDatabase(force);
+      const res = await SupabaseService.seedInitialDatabase(force);
       if (res.success) {
         setSeedingStatus({
           running: false,
           success: true,
-          message: res.message || 'Database successfully seeded in Firebase Firestore!'
+          message: res.message || 'Database successfully seeded in Supabase!'
         });
         await onRefreshData();
         await fetchStats();
@@ -123,7 +123,7 @@ export const SheetSetupModal: React.FC<SheetSetupModalProps> = ({
   const handleExportBackup = async () => {
     const schoolConfig = getActiveSchoolConfig();
     const schoolSlug = (schoolConfig.acronym || schoolConfig.shortName || 'school').toLowerCase().replace(/[^a-z0-9]/g, '_');
-    const data = await FirebaseService.loadAllData(true);
+    const data = await SupabaseService.loadAllData(true);
     const jsonStr = JSON.stringify(data, null, 2);
     const blob = new Blob([jsonStr], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
@@ -136,7 +136,7 @@ export const SheetSetupModal: React.FC<SheetSetupModalProps> = ({
 
   return (
     <div
-      id="firebase-setup-modal-backdrop"
+      id="supabase-setup-modal-backdrop"
       className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4 overflow-y-auto"
     >
       <div className="bg-white rounded-2xl shadow-2xl border border-slate-200 w-full max-w-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-150 my-auto">
@@ -148,9 +148,9 @@ export const SheetSetupModal: React.FC<SheetSetupModalProps> = ({
             </div>
             <div>
               <h2 className="text-base sm:text-lg font-bold text-white tracking-tight flex items-center gap-2">
-                <span>Firebase Cloud Database Center</span>
+                <span>Supabase Cloud Database Center</span>
                 <span className="bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-[10px] font-mono px-2 py-0.5 rounded-full">
-                  Firestore Active
+                  Supabase Active
                 </span>
               </h2>
               <p className="text-xs text-slate-400">
@@ -249,7 +249,7 @@ export const SheetSetupModal: React.FC<SheetSetupModalProps> = ({
             <div>
               <div className="flex items-center justify-between mb-3">
                 <h4 className="text-xs font-bold uppercase tracking-wider text-slate-700">
-                  Firestore Collections Overview
+                  Supabase Collections Overview
                 </h4>
                 <button
                   onClick={fetchStats}
@@ -425,7 +425,7 @@ export const SheetSetupModal: React.FC<SheetSetupModalProps> = ({
             <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 text-xs text-slate-700">
               <h4 className="font-bold text-slate-900 text-sm mb-1">Export JSON School Backup</h4>
               <p>
-                Download a complete, offline JSON snapshot of all school data currently stored in Firebase Firestore (pupils, teachers, subjects, continuous assessment scores, and remarks).
+                Download a complete, offline JSON snapshot of all school data currently stored in Supabase (pupils, teachers, subjects, continuous assessment scores, and remarks).
               </p>
             </div>
 
@@ -443,7 +443,7 @@ export const SheetSetupModal: React.FC<SheetSetupModalProps> = ({
         <div className="bg-slate-50 border-t border-slate-200 px-5 py-3.5 flex items-center justify-between">
           <div className="flex items-center gap-2 text-xs text-slate-500">
             <span className="w-2 h-2 rounded-full bg-emerald-500" />
-            <span>Firebase Firestore Synchronized</span>
+            <span>Supabase Synchronized</span>
           </div>
 
           <button

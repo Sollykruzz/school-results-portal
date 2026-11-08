@@ -1638,28 +1638,26 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
   };
 
   // Full Database Backup Export
-  const handleExportFullBackup = () => {
-    const schoolName = localWebsiteConfig?.schoolName || 'School Management Portal';
-    const schoolSlug = (localWebsiteConfig?.acronym || localWebsiteConfig?.shortName || 'school').toLowerCase().replace(/[^a-z0-9]/g, '_');
-    const backupObj = {
-      school: schoolName,
-      exportedAt: new Date().toISOString(),
-      version: '2.0',
-      teachers: teachersList,
-      students: studentsList,
-      subjects: subjectsList,
-      scores: allScores,
-      summaries: allSummaries,
-      published: publishedRecords
-    };
+  const handleExportFullBackup = async () => {
+    try {
+      const schoolName = localWebsiteConfig?.schoolName || 'School Management Portal';
+      const schoolSlug = (localWebsiteConfig?.acronym || localWebsiteConfig?.shortName || 'school').toLowerCase().replace(/[^a-z0-9]/g, '_');
+      const backupObj = {
+        school: schoolName,
+        ...(await FirebaseService.exportSchoolBackup()),
+        websiteConfig: localWebsiteConfig
+      };
 
-    const blob = new Blob([JSON.stringify(backupObj, null, 2)], { type: 'application/json' });
+      const blob = new Blob([JSON.stringify(backupObj, null, 2)], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
     link.download = `${schoolSlug}_full_backup_${new Date().toISOString().slice(0, 10)}.json`;
-    link.click();
-    URL.revokeObjectURL(url);
+      link.click();
+      URL.revokeObjectURL(url);
+    } catch (err: any) {
+      setFeedback({ type: 'error', message: err?.message || 'Could not create the full backup.' });
+    }
   };
 
   // Backup File Read
