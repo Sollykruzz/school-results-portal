@@ -2593,8 +2593,24 @@ export async function restoreSchoolBackup(backupData: {
     };
 
     // Normalize keys in case of variant exports
-    const rawTeachers: Teacher[] =
-      backupData.teachers || (backupData as any).teachersList || [];
+    const teacherRecords = Array.isArray(backupData.teachers)
+      ? backupData.teachers
+      : Array.isArray((backupData as any).teachersList)
+        ? (backupData as any).teachersList
+        : [];
+    const adminRecord = (backupData as any).admin;
+    const rawTeachers: Teacher[] = adminRecord && typeof adminRecord === 'object'
+      ? [
+          ...teacherRecords,
+          ...(teacherRecords.some((teacher: Teacher) => teacher.Username === adminRecord.Username) ? [] : [
+            {
+              ...adminRecord,
+              Role: 'admin',
+              ClassAssigned: 'Admin'
+            }
+          ])
+        ]
+      : teacherRecords;
     const rawStudents: Student[] =
       backupData.students || (backupData as any).studentsList || (backupData as any).pupils || [];
     const rawSubjects: SubjectRule[] =
