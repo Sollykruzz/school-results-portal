@@ -1,7 +1,7 @@
 /**
- * Firebase Firestore Service
+ * Supabase data service
  * School Management Portal
- * Direct Real-Time Communication with Firebase Firestore
+ * Shared portal records backed by Supabase
  */
 
 import {
@@ -20,7 +20,7 @@ import {
   runTransaction,
   getDocsFromServer
 } from './supabaseFirestore';
-import { db, handleSupabaseError, OperationType } from './firebase';
+import { db, handleSupabaseError } from './supabaseFirestore';
 import { safeStorage, safeSessionStorage } from '../utils/safeStorage';
 import {
   enqueueOfflineOperation,
@@ -113,7 +113,7 @@ import {
   normalizeClassIdentifier
 } from '../utils/grading';
 
-const LIVE_DATA_CACHE_KEY = 'school_portal_firebase_cache';
+const LIVE_DATA_CACHE_KEY = 'school_portal_supabase_cache';
 const WEBSITE_CACHE_KEY = 'school_portal_website_cache';
 
 export function detectClassCategory(className: string): ClassCategory {
@@ -5250,7 +5250,7 @@ export async function resetWebsiteConfig(): Promise<{ success: boolean; message:
 /**
  * Alias object export for seamless compatibility
  */
-export const FirebaseService = {
+export const SupabaseService = {
   isConfigured: () => true,
   loadAllData,
   fetchClasses,
@@ -5310,5 +5310,6 @@ export const FirebaseService = {
 };
 
 // Also export as SheetService alias so any residual imports resolve cleanly
-export const SheetService = FirebaseService;
+export const FirebaseService = SupabaseService;
+export const SheetService = SupabaseService;
 export const INITIAL_MOCK_SUBJECTS = INITIAL_DEFAULT_SUBJECTS;

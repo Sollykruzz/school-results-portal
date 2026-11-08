@@ -1,6 +1,8 @@
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { safeStorage } from '../utils/safeStorage';
 
+export const HARDCODED_DATABASE_ID = 'school_portal_records';
+
 export type FirestoreLike = { client: SupabaseClient };
 export type CollectionReference = { kind: 'collection'; collection: string };
 export type DocumentReference = { kind: 'document'; collection: string; id: string };
